@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: getpid
+Version: 0.1
+Summary: A script for accessing info about a user's working processes
+Home-page: UNKNOWN
+Maintainer: Kieran Heese
+Maintainer-email: kh8fb@virginia.edu
+License: UNKNOWN
+Description: # GetPid
+        
+        A script for accessing info about a user's working processes
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
