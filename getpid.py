@@ -36,15 +36,17 @@ def get_pids(db, username):
     user = str(username)
     for proc in psutil.process_iter(attrs=['pid', 'memory_percent', 'cpu_percent', 'username']):
         dic = proc.as_dict()
-        pid = f"{user}pid{str(dic['pid'])}"
-        mem_inf = dic['memory_percent']
-        cols = ['logic_time', 'real_time', 'mem_percent', 'cpu_percent']
-        dtypes = ["FLOAT", "INT", "INT", "FLOAT"]
-        vtypes = ["Q", "T", "Q", "Q"]
-        cpu_pcnt = dic['cpu_percent']
-
-        # append this pid to the table only if it is the correct user
         if user == dic['username']:
-            the_db.make_table(pid, cols, dtypes, vtypes)
-            tab = the_db.get_table(pid)
-            tab.append(mem_percent=mem_inf, cpu_percent=cpu_pcnt)
+            pid = f"{user}pid{str(dic['pid'])}"
+            mem_inf = dic['memory_percent']
+            cols = ['logic_time', 'real_time', 'mem_percent', 'cpu_percent']
+            dtypes = ["FLOAT", "INT", "INT", "FLOAT"]
+            vtypes = ["Q", "T", "Q", "Q"]
+            cpu_pcnt = dic['cpu_percent']
+            if the_db.check_if_table_exists(pid):
+                tab = the_db.get_table(pid)
+                tab.append(mem_percent=mem_inf, cpu_percent=cpu_pcnt)
+            else:
+                the_db.make_table(pid, cols, dtypes, vtypes)
+                tab = the_db.get_table(pid)
+                tab.append(mem_percent=mem_inf, cpu_percent=cpu_pcnt)
