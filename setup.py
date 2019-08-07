@@ -30,7 +30,8 @@ setup(
         [console_scripts]
         getpid=getpid:cli
     ''',
-
+    
+    python_requires='>=3',
     #classifiers=[
      #   "Programming Language :: Python :: 3",
       #  "License :: OSI Approved :: MIT License",

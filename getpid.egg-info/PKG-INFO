@@ -10,4 +10,5 @@ Description: # GetPid
         
         A script for accessing info about a user's working processes
 Platform: UNKNOWN
+Requires-Python: >=3
 Description-Content-Type: text/markdown
